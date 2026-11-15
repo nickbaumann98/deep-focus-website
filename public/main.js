@@ -3,6 +3,7 @@ import './desktop/apps/talk.js';
 import './desktop/apps/web.js';
 import './desktop/apps/work.js';
 import { seedInterruptions, openReminder } from './desktop/apps/activity.js';
+import { startTunnel, moveTunnel, stopTunnel } from './hypno.js';
 const DOWNLOAD_URL = '';
 const HOLD_SECONDS=5, FEATHER=190;
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -94,6 +95,10 @@ function enter() {
   setLine();
   keys.forEach((key) => key.classList.add("lit"));
   later(240, () => keys.forEach((key) => key.classList.remove("lit")));
+  if (!reducedMotion) {
+    document.body.classList.add("frenzy");
+    later(620, () => document.body.classList.remove("frenzy"));
+  }
 
   const box = placeBacking();
   const open = openHole();
@@ -131,6 +136,7 @@ function enter() {
   later(reducedMotion ? 0 : 1400, () => {
     document.body.classList.add("quiet");
     stopChaos();
+    startTunnel(hero.getBoundingClientRect(), parseFloat(getComputedStyle(hero).borderTopLeftRadius));
   });
 }
 
@@ -138,8 +144,9 @@ function exit() {
   if (state !== "focused") return;
   state = "exiting";
   timers.splice(0).forEach(clearTimeout);
-  document.body.classList.remove("quiet", "focused");
+  document.body.classList.remove("quiet", "focused", "frenzy");
   pill.tabIndex = -1;
+  stopTunnel();
   startChaos();
   backing.style.transition = "opacity .16s";
   backing.style.opacity = 0;
@@ -267,7 +274,9 @@ if (DOWNLOAD_URL) {
 addEventListener("resize", () => {
   sizeWalls();
   if (state === "focused") {
-    placeWalls(placeBacking());
+    const box = placeBacking();
+    placeWalls(box);
+    moveTunnel(box);
   }
 });
 
