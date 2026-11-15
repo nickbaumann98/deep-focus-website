@@ -25,7 +25,7 @@ html, body {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: #5b3bd6 url("wallpaper.jpg") center / cover no-repeat;
+  background: #5b3bd6 url("assets/wallpaper-coast.jpg") center / cover no-repeat;
   user-select: none;
   color: #1d1d1f;
   font: 12px/1.35 var(--sf);
@@ -364,6 +364,12 @@ kbd.lit { background: var(--ivory); color: var(--charcoal); transform: scale(.95
 }
 #download:hover { background: #fff; transform: translateY(-1px); }
 #download:active { transform: scale(.98); }
+
+.site-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-top: -8px; font-size: 13px; }
+.site-links a { color: rgba(239, 233, 221, .55); text-decoration: none; }
+.site-links a:hover, .site-links a:focus-visible { color: var(--ivory); }
+.site-links a:focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 4px; }
+.focused .site-links { visibility: hidden; }
 
 /* ---------- The walls ---------- */
 
