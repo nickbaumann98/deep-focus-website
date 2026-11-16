@@ -63,6 +63,21 @@ footer { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 6px 0 40px; fon
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover, footer a[aria-current="page"] { color: var(--ivory); }
 
+.form label { display: block; margin: 18px 0 6px; color: var(--ivory); font-weight: 500; }
+.form textarea, .form input[type="email"] { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: rgba(0, 0, 0, .25); color: var(--ivory); font: 16px/1.5 var(--ui); }
+.form textarea { resize: vertical; min-height: 140px; }
+.form textarea:focus-visible, .form input:focus-visible, button.button:focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.include { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+.include label { display: inline; margin: 0; font-weight: 400; color: var(--muted); }
+.hint { font-size: 14px; color: var(--muted); font-weight: 400; }
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+button.button { border: 0; font: 600 16px var(--ui); cursor: pointer; }
+button.button:disabled { opacity: .55; cursor: progress; }
+.notice { border-radius: 14px; padding: 12px 16px; background: rgba(237, 222, 192, .1); color: var(--lamp); }
+.notice.ok { background: rgba(40, 200, 72, .12); color: #c9f5d2; }
+.notice.warn { background: rgba(254, 188, 46, .12); color: #ffe2a6; }
+
 @media (max-width: 600px) {
   .card { padding: 28px 22px 24px; border-radius: 22px; }
   h1 { font-size: 30px; }
