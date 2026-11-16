@@ -1,0 +1,38 @@
+name: Site checks
+# Free Linux checks on every pull request and push to main: the offline
+# tools/check-site.py rules, then real-browser screenshots of every page on
+# desktop (1440x900) and iPhone (390x844), saved as a downloadable artifact.
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: site-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Offline site rules (links, images, coming-soon, drafts, privacy)
+        run: python3 tools/check-site.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Desktop and iPhone screenshots (fails on page errors or missing local files)
+        run: node tools/screenshots.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots
+          path: shots/
+          retention-days: 14
