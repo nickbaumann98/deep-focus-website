@@ -13,7 +13,7 @@ from urllib.parse import urlsplit, unquote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "public"
 DRAFT_PAGES = {"privacy.html", "terms.html"}
-REQUIRED = {"index.html", "support.html", "subscribe.html", "manage.html", "privacy.html", "terms.html"}
+REQUIRED = {"index.html", "support.html", "feedback.html", "subscribe.html", "manage.html", "privacy.html", "terms.html"}
 errors = []
 
 class Refs(HTMLParser):
@@ -71,6 +71,16 @@ for p in text_files:
     if p.name in DRAFT_PAGES:
         if "DRAFT — not approved" not in s: errors.append(f"{rel}: lost its DRAFT banner")
         if 'name="robots" content="noindex' not in s: errors.append(f"{rel}: draft page must be noindex")
+
+fb = (ROOT / "feedback.html").read_text(encoding="utf-8")
+m = re.search(r'<meta name="feedback-endpoint" content="([^"]*)"', fb)
+if not m: errors.append("feedback.html: missing feedback-endpoint meta")
+elif m.group(1) and not re.fullmatch(r"https://[a-z0-9.-]+(:\d+)?/v1/feedback", m.group(1)):
+    errors.append("feedback.html: feedback-endpoint must be empty or https://<host>/v1/feedback")
+if 'name="website"' not in fb or 'class="trap"' not in fb:
+    errors.append("feedback.html: lost the spam trap field")
+if re.search(r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_", "".join(p.read_text(encoding="utf-8") for p in text_files)):
+    errors.append("a GitHub token is in public/; it belongs only on the feedback service")
 
 idx = (ROOT / "main.js").read_text(encoding="utf-8")
 if not re.search(r"const DOWNLOAD_URL = ''", idx):
