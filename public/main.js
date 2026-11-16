@@ -76,7 +76,7 @@ function later(ms, run) {
 
 function setLine() {
   if (state === "focused" || state === "entering") {
-    line.textContent = "Everything else goes quiet so you can focus on what matters";
+    line.textContent = "Everything but this window is gone. Hold the button at the bottom to leave.";
   } else {
     line.textContent = touchOnly
       ? "Tap the keys to enter Deep Focus mode"

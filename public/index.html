@@ -3,128 +3,139 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deep Focus: one window, everything else goes quiet</title>
-  <meta name="description" content="Deep Focus is a Mac menu bar app. Press a shortcut and solid walls close in around the window you're working in. Hold for five seconds to leave.">
+  <title>Deep Focus for Mac: everything but your window goes dark</title>
+  <meta name="description" content="A Mac menu bar app. Press ⌘⇧F and walls slide in around the window you're working in, covering every other window until you're done. $9.99 a month after a 7-day free trial.">
   <meta property="og:title" content="Deep Focus for Mac">
-  <meta property="og:description" content="One window. Everything else goes quiet.">
-  <meta property="og:image" content="assets/hero-wall.webp">
+  <meta property="og:description" content="Press ⌘⇧F and everything but the window you're working in goes dark.">
+  <meta property="og:image" content="https://getdeepfocus.com/assets/og.jpg">
   <meta name="theme-color" content="#141210">
   <link rel="icon" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="landing.css?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/stage-coast.webp" type="image/webp" media="(min-width: 721px)">
+  <link rel="stylesheet" href="landing.css?v=3">
   <script src="analytics.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><img src="assets/icon-128.png" alt="" width="28" height="28"> Deep Focus</a>
+  <a class="brand" href="./"><img src="assets/icon-128.png" alt="" width="24" height="24"> Deep Focus</a>
   <nav aria-label="Site">
-    <a href="#how">How it works</a>
-    <a href="#price">Price</a>
-    <a href="#faq">FAQ</a>
+    <a href="try.html" data-track="nav_demo">Demo</a>
     <a class="nav-cta" href="#notify" data-track="nav_cta">Get notified</a>
   </nav>
 </header>
 
 <main id="main">
   <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">For Mac · Coming soon</p>
-      <h1>One window.<br>Everything else goes quiet.</h1>
-      <p class="lede">Deep Focus is a menu bar app. Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> and solid walls close in around the window you're working in. To leave, you hold a button for five seconds, so stopping is a choice, not a reflex.</p>
+    <p class="label">Mac app &middot; launching soon</p>
+    <h1>Everything but the window you&rsquo;re in goes dark.</h1>
+    <p class="lede">Deep Focus sits in your menu bar. Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> and walls slide in around the window you&rsquo;re working in, covering mail, chat and every other window until you&rsquo;re done.</p>
 
-      <form class="signup" id="notify" data-signup="hero" novalidate>
-        <label for="email-hero" class="sr">Email address</label>
-        <input id="email-hero" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
-        <button type="submit">Get notified at launch</button>
-        <p class="form-msg" role="status" aria-live="polite"></p>
-      </form>
-      <p class="fine">$9.99/month after a 7-day free trial · No card for the trial · macOS 14 or later<br>We'll email you when Deep Focus launches. Unsubscribe anytime.</p>
-    </div>
-
-    <div class="stage" aria-hidden="true">
-      <div class="screen">
-        <img class="wall" src="assets/hero-wall.webp" alt="" width="1000" height="625">
-        <div class="menubar"><span></span><b>Deep Focus</b></div>
-        <div class="win w-a"><i></i><i></i><i></i></div>
-        <div class="win w-b"><i></i><i></i><i></i></div>
-        <div class="win w-focus">
-          <div class="bar"><i></i><i></i><i></i><span>Draft — chapter 3</span></div>
-          <div class="lines"><p></p><p></p><p class="short"></p><p></p><p class="short"></p></div>
-        </div>
-        <div class="walls"><div class="wl t"></div><div class="wl b"></div><div class="wl l"></div><div class="wl r"></div></div>
-        <div class="rings"><span></span><span></span><span></span></div>
-        <div class="hold"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"/><circle class="prog" cx="18" cy="18" r="15"/></svg>Hold 5 seconds to exit</div>
-        <div class="dock"><img src="assets/dock-mail.png" alt=""><img src="assets/dock-chat.png" alt=""><img src="assets/dock-web.png" alt=""><img src="assets/dock-news.png" alt=""><img src="assets/dock-music.png" alt=""></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="how" class="band">
-    <h2>How it works</h2>
-    <ol class="steps">
-      <li><span>1</span><h3>Pick your window</h3><p>Click into the document, editor or page you mean to work in.</p></li>
-      <li><span>2</span><h3>Press the shortcut</h3><p><kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> by default, or any shortcut you set. Walls close in around that window.</p></li>
-      <li><span>3</span><h3>Hold to leave</h3><p>Holding a button for five seconds is the only way out. A pause long enough to ask: do I really want to stop?</p></li>
-    </ol>
-  </section>
-
-  <section class="band why">
-    <h2>Why it helps</h2>
-    <div class="cards">
-      <article><h3>Out of sight</h3><p>Mail, chat and every other window disappear behind solid walls. What you can't see is easier to leave alone.</p></article>
-      <article><h3>A deliberate exit</h3><p>No quick click away. Five seconds is short when you mean it and long when you don't.</p></article>
-      <article><h3>A journal on your Mac</h3><p>Write before or after a session. It reads like a normal document and saves as Markdown files on your Mac.</p></article>
-      <article><h3>Lives in the menu bar</h3><p>Always one shortcut away, and out of your way the rest of the time.</p></article>
-    </div>
-  </section>
-
-  <section class="band isnt">
-    <h2>What it is, and isn't</h2>
-    <div class="two">
-      <div><h3>It is</h3><ul><li>A native Mac app for working in one window at a time</li><li>A local journal for notes on your sessions</li></ul></div>
-      <div><h3>It isn't</h3><ul><li>A website blocker</li><li>A security or parental-control tool</li></ul></div>
-    </div>
-  </section>
-
-  <section id="price" class="band">
-    <h2>Simple price</h2>
-    <div class="price">
-      <p class="amount">$9.99<small>/month</small></p>
-      <p>Start with a 7-day free trial. No card needed for the trial. When it ends, you choose whether to subscribe, and your journal stays on your Mac and readable either way.</p>
-      <a class="button" href="#notify-foot" data-track="price_cta">Get notified at launch</a>
-    </div>
-  </section>
-
-  <section id="faq" class="band">
-    <h2>Questions</h2>
-    <details><summary>When does it launch?</summary><p>Soon. Leave your email above and we'll write once when it's ready to download.</p></details>
-    <details><summary>What Mac do I need?</summary><p>macOS 14 or later.</p></details>
-    <details><summary>Why does it ask for Accessibility access?</summary><p>macOS asks for it so Deep Focus can work with the window you've focused and place the walls around it.</p></details>
-    <details><summary>Can I change the shortcut?</summary><p>Yes. <kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> is the default; you can set your own.</p></details>
-    <details><summary>Where is my journal kept?</summary><p>On your Mac, as Markdown files you can open in any editor.</p></details>
-    <details><summary>Can I try it first?</summary><p>Yes: 7 days free, no card. You can also <a href="try.html">play with an interactive demo</a> in your browser now.</p></details>
-  </section>
-
-  <section class="band final">
-    <h2>Be first to try it</h2>
-    <form class="signup" id="notify-foot" data-signup="footer" novalidate>
-      <label for="email-foot" class="sr">Email address</label>
-      <input id="email-foot" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
-      <button type="submit">Get notified at launch</button>
+    <form class="signup" id="notify" data-signup="hero" novalidate>
+      <label for="email-hero" class="sr">Email address</label>
+      <input id="email-hero" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="Email address" required>
+      <button type="submit">Get notified</button>
       <p class="form-msg" role="status" aria-live="polite"></p>
     </form>
-    <p class="fine">One email when we launch, and occasional news. Unsubscribe anytime. See <a href="privacy.html">Privacy</a>.</p>
+    <p class="fine">$9.99 a month after a 7-day free trial. No card to start. macOS 14 or later.</p>
+  </section>
+
+  <figure class="stage-wrap">
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="menubar"><span class="apple"></span><b>Writer</b><span>File</span><span>Edit</span><span>View</span><span class="right"><img src="assets/icon-128.png" alt="" width="14" height="14"><span class="clock">Tue 9:41</span></span></div>
+
+      <div class="win mail">
+        <div class="tb"><i></i><i></i><i></i><span>Inbox &middot; 14 unread</span></div>
+        <ul>
+          <li><b>Jordan</b><span>Re: Thursday?</span></li>
+          <li><b>Billing</b><span>Your receipt</span></li>
+          <li><b>Sam</b><span>quick question</span></li>
+          <li><b>Newsletter</b><span>This week in design</span></li>
+          <li><b>Priya</b><span>Notes from the call</span></li>
+        </ul>
+      </div>
+
+      <div class="win chat">
+        <div class="tb"><i></i><i></i><i></i><span>#general</span></div>
+        <p><b>Alex</b> anyone seen the new mockups?</p>
+        <p><b>Rae</b> lunch at 12?</p>
+        <p><b>Alex</b> 👀</p>
+      </div>
+
+      <div class="win doc" id="doc">
+        <div class="tb"><i></i><i></i><i></i><span>chapter-3.md</span></div>
+        <div class="page">
+          <h4>Chapter 3</h4>
+          <p>The ferry left at seven, which meant the town was still half asleep when we got to the dock.</p>
+          <p class="typing"><span>Nobody on board said much for the first hour.</span><em class="caret"></em></p>
+        </div>
+      </div>
+
+      <div class="toasts">
+        <div class="toast"><b>Messages</b><span>are you coming at 6?</span></div>
+        <div class="toast"><b>Mail</b><span>3 new messages</span></div>
+        <div class="toast"><b>Calendar</b><span>Standup in 5 minutes</span></div>
+      </div>
+
+      <div class="walls">
+        <div class="wall" data-side="top"><i></i></div>
+        <div class="wall" data-side="bottom"><i></i></div>
+        <div class="wall" data-side="left"><i></i></div>
+        <div class="wall" data-side="right"><i></i></div>
+      </div>
+
+      <div class="bubble">You focused for 52 min, day 4 of your streak</div>
+    </div>
+    <figcaption>Recreated in the browser from the app&rsquo;s own colors, fonts and timings.</figcaption>
+  </figure>
+
+  <section class="fact">
+    <p class="big">47 seconds</p>
+    <blockquote>
+      <p>&ldquo;My research over nearly two decades shows that our attention spans are declining, averaging just 47 seconds on any screen.&rdquo;</p>
+      <footer><a href="https://gloriamark.com/attention-span/" rel="noopener">Gloria Mark, PhD &middot; gloriamark.com</a></footer>
+    </blockquote>
+    <p class="after">Deep Focus takes everything else off the screen, so there&rsquo;s less to drift to.</p>
+  </section>
+
+  <section class="details" aria-labelledby="whats-in-it">
+    <h2 id="whats-in-it">What&rsquo;s in it</h2>
+    <dl>
+      <div><dt>The shortcut</dt><dd><kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> by default. Change it to anything you like.</dd></div>
+      <div><dt>Menu bar only</dt><dd>No Dock icon and no window to manage. It&rsquo;s there when you press the keys.</dd></div>
+      <div><dt>A journal</dt><dd>Jot down what you&rsquo;re about to work on, or how it went. Pages are plain Markdown files on your Mac, so they open in any editor, with or without the app.</dd></div>
+      <div><dt>Your focus time</dt><dd>When a session ends you get one line, like &ldquo;You focused for 52 min, day 4 of your streak.&rdquo; The journal keeps today, this week, your longest session and all time. It records only when and for how long, and keeps it on your Mac.</dd></div>
+    </dl>
+  </section>
+
+  <section class="price" id="price" aria-labelledby="price-h">
+    <h2 id="price-h">$9.99 a month</h2>
+    <p>Try it free for 7 days. No card needed to start. Leave your email and we&rsquo;ll write once when it&rsquo;s ready to download.</p>
+    <form class="signup" id="notify-foot" data-signup="footer" novalidate>
+      <label for="email-foot" class="sr">Email address</label>
+      <input id="email-foot" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="Email address" required>
+      <button type="submit">Get notified</button>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+    </form>
+    <p class="fine">Want to see it first? <a href="try.html" data-track="price_demo">Try the demo in your browser</a>. Unsubscribe anytime. <a href="privacy.html">Privacy</a>.</p>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Questions</h2>
+    <details><summary>When does it launch?</summary><p>Soon. Leave your email and we&rsquo;ll write when it&rsquo;s ready.</p></details>
+    <details><summary>What Mac do I need?</summary><p>Any Mac on macOS 14 (Sonoma) or later.</p></details>
+    <details><summary>Why does it ask for Accessibility access?</summary><p>macOS asks for it so Deep Focus can find the window you&rsquo;re working in and put the walls around it.</p></details>
+    <details><summary>Where do my journal and stats live?</summary><p>On your Mac, in ~/Library/Application Support/Deep Focus. The journal is plain Markdown.</p></details>
   </section>
 </main>
 
 <footer class="foot">
   <p>Deep Focus, by Fieldwork</p>
-  <nav aria-label="Footer"><a href="try.html">Interactive demo</a><a href="support.html">Support</a><a href="feedback.html">Feedback</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+  <nav aria-label="Footer"><a href="try.html">Demo</a><a href="support.html">Support</a><a href="feedback.html">Feedback</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
 </footer>
-<script src="landing.js?v=1" defer></script>
+<script src="landing.js?v=3" defer></script>
 </body>
 </html>
