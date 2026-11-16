@@ -203,7 +203,7 @@ registerApp({
     const win = openWindow({
       app: "chat", title: "Messages", x: options.x, y: options.y, w: options.w || 560, h: options.h || 420, minW: 380, minH: 260, className: "messages",
       html: `<div class="split"><div class="side" style="width:210px"><div class="side-top" data-drag>${LIGHTS}</div><div class="msgs-list"></div></div>
-        <div class="main"><div class="msgs-head bar" data-drag></div><div class="bubbles"></div>
+        <div class="main"><div class="msgs-head bar" data-drag></div><div class="bubbles" tabindex="0" role="region" aria-label="Messages"></div>
         <form class="msgs-input"><input placeholder="iMessage" aria-label="Message" autocomplete="off"></form></div></div>`,
     });
     const el = win.el;
@@ -325,7 +325,7 @@ registerApp({
         <div class="main"><div class="bar mail-bar" data-drag><div class="mail-heading"><b class="mail-title"></b><small class="mail-count"></small></div>
           <div class="mail-tools"><button data-new aria-label="New Message" title="New Message">✎</button><button data-reply aria-label="Reply" title="Reply">↩</button><button data-flag aria-label="Flag" title="Flag">⚑</button><button data-delete aria-label="Delete" title="Delete">🗑</button></div>
           <input class="mail-search" placeholder="Search" aria-label="Search mail" autocomplete="off"></div>
-        <div class="split mail-panes"><div class="mail-list"></div><div class="mail-body"></div></div></div></div>`,
+        <div class="split mail-panes"><div class="mail-list"></div><div class="mail-body" tabindex="0" role="region" aria-label="Message"></div></div></div></div>`,
     });
     win.mail = { box: "inbox", selected: mail[0].id, query: "" };
     const el = win.el;

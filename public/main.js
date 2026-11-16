@@ -1,5 +1,5 @@
 import { $, bootOS, launch, startChaos, stopChaos, closePopup, registerApp } from './desktop/os.js';
-import './desktop/apps/talk.js';
+import './desktop/apps/talk.js?v=2';
 import './desktop/apps/web.js';
 import './desktop/apps/work.js';
 import { seedInterruptions, openReminder } from './desktop/apps/activity.js';
