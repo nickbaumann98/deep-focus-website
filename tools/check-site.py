@@ -3,7 +3,8 @@
 
 Run: python3 tools/check-site.py
 Fails if a local link or image is missing, if a live download/checkout/app link
-appears while the site is still "coming soon", if a phone number or street
+appears (the only download allowed is a DMG on this
+repo's GitHub Releases), if a phone number or street
 address shows up, if private-looking files are in public/, or if the draft
 legal pages lose their DRAFT banner and noindex.
 """
@@ -51,8 +52,13 @@ for p in text_files:
         t = local_target(base, ref)
         if t and not t.exists(): errors.append(f"{rel}: missing file {ref}")
     if re.search(r"deepfocus://", s): errors.append(f"{rel}: live deepfocus:// app link before launch")
-    if re.search(r"https?://\S+\.dmg\b|checkout\.stripe\.com|buy\.stripe\.com|billing\.stripe\.com", s, re.I):
-        errors.append(f"{rel}: live download or checkout link before launch")
+    # The only download allowed is the early-access DMG on this repo's GitHub Releases
+    # (Nick approved publishing the unsigned early-access build, Nov 17 2026).
+    for m in re.finditer(r"https?://[^\s\"'<>]+\.dmg\b", s, re.I):
+        if not re.fullmatch(r"https://github\.com/nickbaumann98/deep-focus-website/releases/download/v[0-9][\w.-]*/DeepFocus\.dmg", m.group(0)):
+            errors.append(f"{rel}: download link outside this repo's releases: {m.group(0)}")
+    if re.search(r"checkout\.stripe\.com|buy\.stripe\.com|billing\.stripe\.com", s, re.I):
+        errors.append(f"{rel}: live checkout link on the site (checkout starts in the app)")
     if re.search(r"(?<![\w.])(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}(?!\d)", s):
         errors.append(f"{rel}: looks like a phone number")
     if re.search(r"\b\d{1,5}\s+[A-Z][a-z]+(\s[A-Z][a-z]+)*\s(Street|St|Avenue|Ave|Road|Rd|Lane|Ln|Drive|Dr|Boulevard|Blvd)\b\.?", s):
