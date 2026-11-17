@@ -24,16 +24,21 @@
   <a class="brand" href="./"><img src="assets/icon-128.png" alt="" width="24" height="24"> Deep Focus</a>
   <nav aria-label="Site">
     <a href="try.html" data-track="nav_demo">Demo</a>
-    <a class="nav-cta" href="#notify" data-track="nav_cta">Get notified</a>
+    <a class="nav-cta" href="download/DeepFocus.dmg" data-track="nav_download">Download</a>
   </nav>
 </header>
 
 <main id="main">
   <section class="hero">
-    <p class="label">Mac app &middot; launching soon</p>
+    <p class="label">Mac app &middot; early access</p>
     <h1>Everything but the window you&rsquo;re in goes dark.</h1>
     <p class="lede">Deep Focus sits in your menu bar. Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> and walls slide in around the window you&rsquo;re working in, covering mail, chat and every other window until you&rsquo;re done.</p>
 
+    <div class="get">
+      <a class="download" href="download/DeepFocus.dmg" data-track="hero_download">Download for Mac</a>
+      <p class="fine">Early-access build. Apple hasn&rsquo;t notarized it yet, so macOS asks you to confirm the first time you open it: <a href="install.html" data-track="hero_install">how to open it</a>.</p>
+    </div>
+    <p class="fine">Or get an email when there&rsquo;s news:</p>
     <form class="signup" id="notify" data-signup="hero" novalidate>
       <label for="email-hero" class="sr">Email address</label>
       <input id="email-hero" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="Email address" required>
@@ -113,7 +118,7 @@
 
   <section class="price" id="price" aria-labelledby="price-h">
     <h2 id="price-h">$9.99 a month</h2>
-    <p>Try it free for 7 days. No card needed to start. Leave your email and we&rsquo;ll write once when it&rsquo;s ready to download.</p>
+    <p>Try it free for 7 days. No card needed to start. <a href="download/DeepFocus.dmg" data-track="price_download">Download the early-access build</a>, or leave your email for news.</p>
     <form class="signup" id="notify-foot" data-signup="footer" novalidate>
       <label for="email-foot" class="sr">Email address</label>
       <input id="email-foot" name="email_address" type="email" autocomplete="email" inputmode="email" placeholder="Email address" required>
@@ -125,7 +130,7 @@
 
   <section class="faq" aria-labelledby="faq-h">
     <h2 id="faq-h">Questions</h2>
-    <details><summary>When does it launch?</summary><p>Soon. Leave your email and we&rsquo;ll write when it&rsquo;s ready.</p></details>
+    <details><summary>Is it ready?</summary><p>It&rsquo;s in early access. Apple hasn&rsquo;t notarized this build yet, so the first time you open it macOS asks you to confirm. <a href="install.html">Here&rsquo;s how</a>.</p></details>
     <details><summary>What Mac do I need?</summary><p>Any Mac on macOS 14 (Sonoma) or later.</p></details>
     <details><summary>Why does it ask for Accessibility access?</summary><p>macOS asks for it so Deep Focus can find the window you&rsquo;re working in and put the walls around it.</p></details>
     <details><summary>Where do my journal and stats live?</summary><p>On your Mac, in ~/Library/Application Support/Deep Focus. The journal is plain Markdown.</p></details>
