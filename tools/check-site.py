@@ -5,15 +5,15 @@ Run: python3 tools/check-site.py
 Fails if a local link or image is missing, if a live download/checkout/app link
 appears (the only download allowed is a DMG on this
 repo's GitHub Releases), if a phone number or street
-address shows up, if private-looking files are in public/, or if the draft
-legal pages lose their DRAFT banner and noindex.
+address shows up, if private-looking files are in public/, or if the legal
+pages contain draft markers or lose their "Last updated" line.
 """
 import pathlib, re, sys
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "public"
-DRAFT_PAGES = {"privacy.html", "terms.html"}
+LEGAL_PAGES = {"privacy.html", "terms.html"}
 REQUIRED = {"index.html", "support.html", "feedback.html", "subscribe.html", "manage.html", "privacy.html", "terms.html"}
 errors = []
 
@@ -74,9 +74,9 @@ for p in text_files:
         if "data-app-billing" in a or "data-destination" in a:
             if a.get("href") != "#availability" or a.get("aria-disabled") != "true":
                 errors.append(f"{rel}: billing/download/support button must stay disabled until launch")
-    if p.name in DRAFT_PAGES:
-        if "DRAFT — not approved" not in s: errors.append(f"{rel}: lost its DRAFT banner")
-        if 'name="robots" content="noindex' not in s: errors.append(f"{rel}: draft page must be noindex")
+    if p.name in LEGAL_PAGES:
+        if re.search(r'DRAFT|class="(draft|todo)"|to confirm|placeholder|TODO', s): errors.append(f"{rel}: draft marker on a legal page")
+        if "Last updated: " not in s: errors.append(f"{rel}: missing its Last updated line")
 
 fb = (ROOT / "feedback.html").read_text(encoding="utf-8")
 m = re.search(r'<meta name="feedback-endpoint" content="([^"]*)"', fb)
