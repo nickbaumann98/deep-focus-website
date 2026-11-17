@@ -1,9 +1,25 @@
-// Deep Focus landing page: launch-list signup (Kit form, double opt-in) + light event hooks.
+// Deep Focus landing page: email signup (Kit form, double opt-in; the confirmation
+// email carries the download link) + light event hooks.
 (function () {
   var KIT_URL = 'https://app.kit.com/forms/10195361/subscriptions';
 
   function track(name, props) {
     try { if (window.posthog && window.posthog.capture) window.posthog.capture(name, props || {}); } catch (e) {}
+  }
+
+  // Ad attribution: carry utm_* params onto same-site links so the next page's
+  // $pageview keeps them. URL only; no cookie or storage.
+  var utm = (location.search || '').slice(1).split('&').filter(function (kv) { return /^utm_/.test(kv); }).join('&');
+  if (utm) {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var raw = a.getAttribute('href');
+      if (!raw || raw.charAt(0) === '#' || /^(mailto|tel|javascript):/i.test(raw)) return;
+      var u;
+      try { u = new URL(raw, location.href); } catch (e) { return; }
+      if (u.origin !== location.origin || /[?&]utm_/.test(u.search)) return;
+      u.search = u.search ? u.search + '&' + utm : '?' + utm;
+      a.setAttribute('href', u.pathname + u.search + u.hash);
+    });
   }
 
   document.querySelectorAll('[data-track]').forEach(function (el) {
@@ -51,7 +67,7 @@
         track('email_signup', { where: where });
         form.classList.add('ok');
         form.innerHTML = '<p class="thanks"><strong>Thanks! Check your inbox.</strong><br>' +
-          (text || 'Tap the link in our email to confirm, and we\'ll write when Deep Focus launches.') + '</p>';
+          (text || 'Confirm your email and you\'ll go straight to the download. The email has the Download for Mac link too.') + '</p>';
       }
       function fail() {
         button.disabled = false;

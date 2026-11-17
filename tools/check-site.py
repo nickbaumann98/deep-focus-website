@@ -89,8 +89,8 @@ if re.search(r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_", "".join(p.read_text(enco
     errors.append("a GitHub token is in public/; it belongs only on the feedback service")
 
 idx = (ROOT / "main.js").read_text(encoding="utf-8")
-if not re.search(r"const DOWNLOAD_URL = ''", idx):
-    errors.append("main.js: DOWNLOAD_URL is set; the download must stay 'coming soon' until the signed build is ready")
+if not re.search(r"const DOWNLOAD_URL = 'https://github\.com/nickbaumann98/deep-focus-website/releases/download/v[0-9][\w.-]*/DeepFocus\.dmg'", idx):
+    errors.append("main.js: DOWNLOAD_URL must be the DMG on this repo's GitHub Releases")
 
 if errors:
     print("\n".join("FAIL " + e for e in errors)); sys.exit(1)
