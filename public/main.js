@@ -4,7 +4,7 @@ import './desktop/apps/web.js';
 import './desktop/apps/work.js';
 import { seedInterruptions, openReminder } from './desktop/apps/activity.js';
 import { startTunnel, moveTunnel, stopTunnel } from './hypno.js';
-const DOWNLOAD_URL = '';
+const DOWNLOAD_URL = 'https://github.com/nickbaumann98/deep-focus-website/releases/download/v0.1.0-early-access/DeepFocus.dmg';
 const HOLD_SECONDS=5, FEATHER=190;
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const touchOnly=matchMedia('(hover: none) and (pointer: coarse)').matches;
@@ -263,13 +263,10 @@ addEventListener("blur", () => {
 $("#keys").addEventListener("click", enter);
 
 const download = $("#download");
-if (DOWNLOAD_URL) {
-  download.href = DOWNLOAD_URL;
-} else {
-  download.textContent = "Coming soon for Mac";
-  download.setAttribute("aria-disabled", "true");
-  download.addEventListener("click", (event) => { event.preventDefault(); line.textContent = "The Mac download will be available when the signed build is ready"; });
-}
+download.href = DOWNLOAD_URL;
+download.addEventListener("click", () => {
+  try { window.posthog?.capture?.("cta_click", { where: "demo_download" }); } catch {}
+});
 
 addEventListener("resize", () => {
   sizeWalls();
